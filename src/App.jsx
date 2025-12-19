@@ -1,45 +1,27 @@
-import Navbar from './components/navbar'
-import Employees from './pages/employees'
-import SearchBar from './components/searchbar';
+import { Routes, Route } from 'react-router-dom';
+import Login from './auth/Login';
+import MainLayout from './MainLayout';
+
+import Employees from './pages/Employees';
 import ViewEmployee from './navigation/viewEmployee';
 import AddEmployee from './navigation/AddEmployee';
+import Payroll from './pages/Payroll';
 
-
-import './App.css'
-
-//Bootstrap imports
-import 'bootstrap/dist/css/bootstrap.min.css';
-import 'bootstrap/dist/js/bootstrap.bundle.min.js';
-
-//React Router imports
-import { Route, Routes } from 'react-router-dom';
+import './index.css';
 
 function App() {
-
-  return (
-    <>
-      <div className="App">
-        <div>
-          <Navbar />
-        </div>
-        <div>
-          <SearchBar />
-          <RouterApp />
-        </div>
-      </div>
-
-    </>
-  )
-}
-
-function RouterApp() {
   return (
     <Routes>
-      <Route path="/employee" element={<Employees />} />
-      <Route path="/viewEmployee/:id" element={<ViewEmployee />} />
-      <Route path="/addEmployee" element={<AddEmployee />} />
+      <Route path="/" element={<Login />} />
+
+      <Route element={<MainLayout />}>
+        <Route path="/employee" element={<Employees />} />
+        <Route path="/viewEmployee/:id" element={<ViewEmployee />} />
+        <Route path="/addEmployee" element={<AddEmployee />} />
+        <Route path="/payroll" element={<Payroll />} />
+      </Route>
     </Routes>
-  )
+  );
 }
 
-export default App
+export default App;
